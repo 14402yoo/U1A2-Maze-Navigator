@@ -5,22 +5,29 @@ public class RobotTask {
 	public void run() {
 		// build a random city called waterloo
 		City maze = new City("A2Maze.txt");
+		maze.showThingCounts(true);
 		// build a robot in the city waterloo starting at street 4, avenue 1
 		RobotAdvanced r = new RobotAdvanced(maze, 4, 4, Direction.NORTH, 0);
-		r.pickThing();
+		r.repeat(() -> {
+			r.pickThing();
+		}, 4);
 		r.turn_and_move_tracked(RobotAdvanced.Turn.Left, 2);
 		r.turn_and_move_tracked(RobotAdvanced.Turn.Right, 1);
 		r.turn_and_move_tracked(RobotAdvanced.Turn.Left, 1);
 		r.turn_and_move_tracked(RobotAdvanced.Turn.Right, 3);
 		r.turn_and_move_tracked(RobotAdvanced.Turn.Right, 8);
-		r.pickThing();
+		r.repeat(() -> {
+			r.pickThing();
+		}, 4);
 		r.undo_actions(1);
 		r.move_tracked(1);
 		r.clear_action_logs();
 
 		r.turn_and_move_tracked(RobotAdvanced.Turn.Left, 2);
 		r.turn_and_move_tracked(RobotAdvanced.Turn.Right, 1);
-		r.pickThing();
+		r.repeat(() -> {
+			r.pickThing();
+		}, 4);
 		r.turnBack();
 		r.undo_actions(1);
 		r.turnBack();
@@ -42,7 +49,9 @@ public class RobotTask {
 		r.turn_and_move_tracked(RobotAdvanced.Turn.Left, 4);	
 		r.turn_left_tracked();
 		r.moveDR_tracked();
-		r.pickThing();
+		r.repeat(() -> {
+			r.pickThing();
+		}, 2);
 		r.turnBack();
 		r.undo_actions(1);
 		r.turn_and_move_tracked(RobotAdvanced.Turn.Right, 4);
@@ -52,7 +61,9 @@ public class RobotTask {
 			r.turn_right_tracked();
 		}, 2);
 		r.move_tracked(1);
-		r.pickThing();
+		r.repeat(() -> {
+			r.pickThing();
+		}, 5);
 		r.turnBack();	
 		r.print_number_of_actions_remained();	
 		r.undo_actions(10);
